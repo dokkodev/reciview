@@ -1,0 +1,42 @@
+.container{
+	margin-top: 50px;
+}
+
+.name_div{
+	margin-top: 50px;
+}
+
+.ingredient_div input{
+	width: 100%;
+	height: 35px;
+	margin-bottom: 7px;
+}
+.ingredient_div .card{
+	width:100%;
+	font-size: 20px;
+	padding: 7px;
+	cursor: pointer;
+}
+
+.img_input{
+	margin-top: 12px;
+}
+
+.comment_text{
+	width: 100%;
+	height: 80%;
+}
+
+.submit{
+	margin-top:10pt;
+}
+
+.buttons-row{
+	width:100%;
+}
+.buttons-row .btn{
+	float: right;
+	margin-top: 10pt;
+	margin-left: 10pt;
+	width: 7%;
+}

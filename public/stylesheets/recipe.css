@@ -1,0 +1,56 @@
+.recipe-card{
+	margin-bottom: 15px;
+	height: 300px;
+}
+
+.recipe-card .card-header{
+	height: 25%;
+}
+
+.recipe-card .card-body{
+	height: 70%;
+}
+
+.recipe-card .card-body .card-title{
+	font-size: 22px;
+}
+
+.edit-enter-wrapper{
+	margin-top: 12px;
+}
+
+.edit-enter-wrapper button{
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.edit-enter-wrapper .recipe-edit{
+	width: 50%;
+}
+
+.edit-enter-wrapper .recipe-enter{
+	width: 50%;
+}
+
+.newadd-button{
+	padding: 60px;
+	width: 80%;
+	font-size: 30px;
+	margin-top: 20px;
+}
+
+.recipe_card{
+	height: 50%;
+}
+
+.notification {
+    position: absolute;
+    right: -7px;
+    top: -7px;
+    background-color: red;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+	font-size: 12px;
+}

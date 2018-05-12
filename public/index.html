@@ -1,65 +1,86 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+		<title>Reciview</title>
+		<link rel='stylesheet' href='module/css/jquery-ui.min.css' />
+		<link rel='stylesheet' href='module/css/bootstrap.min.css' />
+		<link rel='stylesheet' href='module/font-awesome-4.7.0/css/font-awesome.min.css' />
+		<link rel='stylesheet' href='stylesheets/common.css' />
+		<link rel='stylesheet' href='stylesheets/restaurants.css' />
+	</head>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
   <body>
-    <div id="message">
-      <h2>Reciview</h2>
-      <h1>Reciview is currently being built</h1>
-      <p>You can go and see our prototype for now if you want</p>
-      <a target="_blank" href="https://invis.io/9HGQ5FMPSWR">Open Reciview Prototype</a>
-    </div>
-    <!-- <p id="load">Firebase SDK Loading&hellip;</p> -->
+		<div id="common-navbar">
+		</div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+		<nav aria-label="breadcrumb">
+		  	<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/">My Restaurants</a></li>
+		  	</ol>
+		</nav>
 
-        // try {
-        //   let app = firebase.app();
-        //   let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        //   document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        // } catch (e) {
-        //   console.error(e);
-        //   document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        // }
-      });
-    </script>
+		<!-- Restaurant cards container -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="card restaurant-card text-center">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-3">
+									<img src="https://cdn.pixabay.com/photo/2017/10/28/15/30/shops-2897328_1280.jpg"
+									class="rounded" alt="missing picture" width="100px" height="100px">
+									<!-- https://cdn.pixabay.com/photo/2017/06/26/12/49/red-wine-2443699_1280.jpg -->
+									<!-- https://cdn.pixabay.com/photo/2018/03/30/17/58/mallorca-3275998_1280.jpg -->
+								</div>
+								<div class="col-md-9">
+									<div class="row">
+										<div class="col-md-12">
+											<h5 class="class-title">
+												Burger Queen
+											</h5>
+											<div class="restaurant-reg-date">
+												Registered date : 2018/05/13
+											</div>
+										</div>
+										<div class="col-md-12">
+											<p class="class-title">
+												Eueun-Dong, Daejeon
+											</p>
+										</div>
+										<div class="col-md-5">
+											<div class="class-title">
+												<a href="/recipe">
+													<i class="fa fa-comment"></i>
+													3 new reviews
+												</a>
+											</div>
+										</div>
+										<div class="col-md-7">
+											<a href="/recipe" class="btn btn-primary card-button">Go to Recipes</a>
+											<a href="/restaurant?id=1" class="btn btn-secondary card-button">Edit Info.</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="card restaurant-card text-center">
+						<div class="card-body">
+							<h5 class="card-title">Add New Restaurant</h5>
+							<a href="/restaurant" class="btn btn-primary add-button"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="module/js/jquery-1.12.4.min.js"></script>
+		<script src="module/js/jquery-ui.min.js"></script>
+		<script src="module/js/bootstrap.min.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/restaurants.js"></script>
   </body>
 </html>

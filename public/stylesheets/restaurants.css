@@ -1,0 +1,18 @@
+.card {
+	margin-bottom: 10px;
+	margin-left: 200px;
+	margin-right: 200px;
+}
+
+.class-title {
+	float: left;
+}
+
+.restaurant-reg-date {
+	float: right;
+}
+
+.card-button {
+	float: right;
+	margin: 2px;
+}

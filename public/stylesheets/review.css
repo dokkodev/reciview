@@ -1,0 +1,100 @@
+div.container {
+	max-width: unset;
+}
+
+.card .card-header .card-title {
+	margin: .25rem 0;
+}
+.card .card-img {
+	border-radius: 0;
+}
+.card .card-body .card-title {
+	margin-bottom: 30px;
+}
+.card .button_container {
+	float: right;
+}
+.card .ingredient-list-wrapper {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+.card .ingredient-list-wrapper .ingredient-list {
+	margin: -10px 0;
+	padding: 0;
+	list-style-type: square;
+	list-style-position: inside;
+}
+.card .ingredient-list-wrapper .ingredient {
+	padding: 10px 15px;
+	font-size: 15px;
+	cursor: pointer;
+}
+.card .ingredient-list-wrapper .ingredient:hover,
+.card .ingredient-list-wrapper .ingredient:active,
+.card .ingredient-list-wrapper .ingredient.active {
+	opacity: 0.85;
+	background-color: #bbb;
+}
+.card .ingredient-list-wrapper .ingredient:first-child {
+	margin-top: 10px;
+}
+.card .ingredient-list-wrapper .ingredient:last-child {
+	margin-bottom: 10px;
+}
+/* .card .ingredient-list-wrapper .ingredient:nth-child(even) {
+	background-color: #ccc;
+}
+.card .ingredient-list-wrapper .ingredient:nth-child(even):hover {
+	background-color: #888;
+} */
+
+.card.review_card {
+	margin-bottom: 20px;
+}
+.card.review_card .user_profile {
+	font-size: 64px;
+	text-align: center;
+}
+.card.review_card .col-10 {
+	flex: 0 0 87%;
+	max-width: 87%;
+}
+ .card.review_card .star-rating {
+	font-size: 24px;
+}
+.card.review_card .registered_date {
+	float: right;
+}
+.card.review_card .review_body, .card.review_card .review_content {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 18px;
+}
+.card.review_card .review_content .filtering {
+	color: #00c;
+	cursor: pointer;
+}
+.card.review_card .review_comment_box {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #dedede;
+}
+.card.review_card .review_comment_box:empty {
+	padding-top: 0;
+}
+.card.review_card .review_comment_box .fa-reply {
+	transform: rotate(180deg);
+}
+.card.review_card .review_comment {
+	margin-top: 20px;
+}
+.card.review_card .review_comment textarea {
+	resize: none;
+}
+.card.review_card .reddot {
+	width: 16px;
+	height: 16px;
+	background-color: red;
+	border-radius: 50%;
+	float: right;
+}

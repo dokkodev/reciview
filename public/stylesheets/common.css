@@ -1,0 +1,25 @@
+body {
+  padding: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+
+header {
+	background-color: indigo;
+}
+
+nav .breadcrumb-item+.breadcrumb-item::before {
+	content: ">";
+}
+
+.restaurant-card {
+	height : 20vh;
+}
+
+.vertical-center {
+	padding: 10px 0;
+}
+
