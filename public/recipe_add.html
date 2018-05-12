@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<title>Reciview</title>
+		<link rel='stylesheet' href='module/css/jquery-ui.min.css' />
+		<link rel='stylesheet' href='module/css/bootstrap.min.css' />
+		<link rel='stylesheet' href='module/font-awesome-4.7.0/css/font-awesome.min.css' />
+		<link rel='stylesheet' href='stylesheets/common.css' />
+		<link rel='stylesheet' href='stylesheets/recipe_add.css' />
+	</head>
+
+  <body>
+		<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+			<a class="navbar-brand mr-0 mr-md-2" href="/">
+				<i class="fa fa-cutlery"></i> Reciview
+			</a>
+			<div class="navbar-nav-scroll">
+				<ul class="navbar-nav bd-navbar-nav flex-row">
+					<li class="nav-item">
+						<a class="nav-link" href="/"><i class="fa fa-home"></i> Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="/mypage"><i class="fa fa-sticky-note"></i> MyPage</a>
+					</li>
+				</ul>
+			</div>
+			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+				<li class="nav-item">
+				  	<a class="nav-link btn-logout" href="/logout">
+						<i class="fa fa-info-circle" aria-hidden="true"></i> Help
+					</a>
+				</li>
+				<li class="nav-item">
+				  	<a class="nav-link btn-logout" href="/logout">
+						<i class="fa fa-user-o" aria-hidden="true"></i> Logout
+					</a>
+				</li>
+			</ul>
+		</header>
+		
+		<nav aria-label="breadcrumb">
+		  	<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">My Restaurants</a></li>
+					<li class="breadcrumb-item"><a href="/recipes">Recipes</a></li>
+					<li class="breadcrumb-item active" aria-current="page">recipe-add</li>
+		  	</ol>
+		</nav>
+		
+		<div class="container">
+			<div class="add_title">
+				<h3>
+					Add Recipe
+				</h3>
+			</div>
+			<div class="name_div row">
+				<div class="col col-3">
+					<h4>
+						Name:
+					</h4>
+				</div>
+				<input class="col col-9" id="name_input" type="text">
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="img_div col col-4">
+					<h5>
+						Image:
+					</h5>
+					<img class="card-img" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_163343927fa%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_163343927fa%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2299.125%22%20y%3D%2296.3%22%3EImage%20cap%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+					<input type="file" class="img_input">
+				</div>
+				<div class="ingredient_div col col-4">
+					<h5>
+						Ingredients:
+					</h5>
+					<input type="text">
+					<input type="text">
+					<input type="text">
+					<input type="text">
+					<button class = "card">
+						<i class="fa fa-plus-circle"> Add more ingredients</i>
+					</button>
+				</div>
+				<div class="comment_div col col-4">
+					<h5>
+						Description
+					</h5>
+					<textarea class="comment_text"></textarea>
+				</div>
+			</div>
+			<div class="buttons-row">
+				<button class="btn btn-primary" id="submit">
+					Add
+				</button>	
+				<button class="btn">
+					cancel
+				</button>
+				<div class="alert alert-warning row" id="errormsg">
+					Error, fill in the name of food and ingredients
+				</div>
+			</div>			
+			
+		</div>
+		
+		
+		<script src="module/js/jquery-1.12.4.min.js"></script>
+		<script src="module/js/jquery-ui.min.js"></script>
+		<script src="module/js/bootstrap.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+		<script src="js/recipe.js"></script>
+		<script src="js/recipe_add.js"></script>
+  </body>
+</html>

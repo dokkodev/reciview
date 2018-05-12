@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<title>Reciview</title>
+		<link rel='stylesheet' href='module/css/jquery-ui.min.css' />
+		<link rel='stylesheet' href='module/css/bootstrap.min.css' />
+		<link rel='stylesheet' href='module/font-awesome-4.7.0/css/font-awesome.min.css' />
+		<link rel='stylesheet' href='stylesheets/common.css' />
+		<link rel='stylesheet' href='stylesheets/recipe.css' />
+	</head>
+	<body>
+		<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+			<a class="navbar-brand mr-0 mr-md-2" href="/">
+				<i class="fa fa-cutlery"></i> Reciview
+			</a>
+			<div class="navbar-nav-scroll">
+				<ul class="navbar-nav bd-navbar-nav flex-row">
+					<li class="nav-item">
+						<a class="nav-link" href="/"><i class="fa fa-home"></i> Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="/mypage"><i class="fa fa-sticky-note"></i> MyPage</a>
+					</li>
+				</ul>
+			</div>
+			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+				<li class="nav-item">
+				  	<a class="nav-link btn-logout" href="/logout">
+						<i class="fa fa-info-circle" aria-hidden="true"></i> Help
+					</a>
+				</li>
+				<li class="nav-item">
+				  	<a class="nav-link btn-logout" href="/logout">
+						<i class="fa fa-user-o" aria-hidden="true"></i> Logout
+					</a>
+				</li>
+			</ul>
+		</header>
+		
+		<nav aria-label="breadcrumb">
+		  	<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">My Restaurants</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Recipes</li>
+		  	</ol>
+		</nav>
+		
+		<div class="container">
+			<div class="row row-6">
+				<div class="col col-3" id="newadd-card">
+					<div class="card recipe-card text-center">
+						<div class="card-body">
+							<h5 class="card-title">Add New Recipe</h5>
+							<a href="#" class="btn btn-primary newadd-button" data-toggle="modal" data-target=".add-restaurant"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="module/js/jquery-1.12.4.min.js"></script>
+		<script src="module/js/jquery-ui.min.js"></script>
+		<script src="module/js/bootstrap.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+		<script src="js/recipe.js"></script>
+	</body>
+</html>

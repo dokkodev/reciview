@@ -28,6 +28,8 @@ div.container {
 	padding: 10px 15px;
 	font-size: 15px;
 	cursor: pointer;
+	margin-right: -1px;
+	margin-bottom: -1px;
 }
 .card .ingredient-list-wrapper .ingredient:hover,
 .card .ingredient-list-wrapper .ingredient:active,
@@ -36,28 +38,22 @@ div.container {
 	background-color: #bbb;
 }
 .card .ingredient-list-wrapper .ingredient:first-child {
-	margin-top: 10px;
+	margin-top: 9px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 .card .ingredient-list-wrapper .ingredient:last-child {
-	margin-bottom: 10px;
+	margin-bottom: 9px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
-/* .card .ingredient-list-wrapper .ingredient:nth-child(even) {
-	background-color: #ccc;
-}
-.card .ingredient-list-wrapper .ingredient:nth-child(even):hover {
-	background-color: #888;
-} */
 
 .card.review_card {
 	margin-bottom: 20px;
 }
 .card.review_card .user_profile {
-	font-size: 64px;
+	font-size: 3vw;
 	text-align: center;
-}
-.card.review_card .col-10 {
-	flex: 0 0 87%;
-	max-width: 87%;
 }
  .card.review_card .star-rating {
 	font-size: 24px;
@@ -68,7 +64,7 @@ div.container {
 .card.review_card .review_body, .card.review_card .review_content {
 	padding-top: 10px;
 	padding-bottom: 10px;
-	font-size: 18px;
+	font-size: 14px;
 }
 .card.review_card .review_content .filtering {
 	color: #00c;
@@ -90,6 +86,11 @@ div.container {
 }
 .card.review_card .review_comment textarea {
 	resize: none;
+}
+.card.review_card .delete_comment {
+	margin-left: 20px;
+	cursor: pointer;
+	color: #888;
 }
 .card.review_card .reddot {
 	width: 16px;
