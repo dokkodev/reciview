@@ -21,21 +21,22 @@
 
 		<!-- Restaurant cards container -->
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center restaurant-card-template">
+			<div class="row restaurant-card-row">
+
+				<div class="col-md-12 text-center restaurant-card-template" hidden="true">
 					<div class="card restaurant-card text-center">
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-3">
 									<img src="https://cdn.pixabay.com/photo/2017/10/28/15/30/shops-2897328_1280.jpg"
-									class="rounded" alt="missing picture" width="100px" height="100px">
+									class="rounded restaurant-image" alt="missing picture" width="100px" height="100px">
 									<!-- https://cdn.pixabay.com/photo/2017/06/26/12/49/red-wine-2443699_1280.jpg -->
 									<!-- https://cdn.pixabay.com/photo/2018/03/30/17/58/mallorca-3275998_1280.jpg -->
 								</div>
 								<div class="col-md-9">
 									<div class="row">
 										<div class="col-md-12">
-											<h5 class="class-title">
+											<h5 class="class-title restaurant-name">
 												Burger Queen
 											</h5>
 											<div class="restaurant-reg-date">
@@ -43,21 +44,21 @@
 											</div>
 										</div>
 										<div class="col-md-12">
-											<p class="class-title">
+											<p class="class-title restaurant-address">
 												Eueun-Dong, Daejeon
 											</p>
 										</div>
 										<div class="col-md-5">
 											<div class="class-title">
-												<a href="/recipe">												
+												<a href="/recipe">
 													<i class="fa fa-comment"></i>
-													3 new reviews		
+													3 new reviews
 												</a>
 											</div>
 										</div>
 										<div class="col-md-7">
 											<a href="/recipe" class="btn btn-primary card-button">Go to Recipes</a>
-											<a href="/restaurant?id=1" class="btn btn-secondary card-button">Edit Info.</a>
+											<a href="/restaurant?id=1" class="btn btn-secondary card-button edit-button">Edit Info.</a>
 										</div>
 									</div>
 								</div>
@@ -66,7 +67,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-12">
+				<div class="col-md-12 restaurant-card-new">
 					<div class="card restaurant-card text-center">
 						<div class="card-body">
 							<h5 class="card-title">Add New Restaurant</h5>
