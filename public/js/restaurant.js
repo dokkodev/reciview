@@ -8,6 +8,60 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+var marker = null;
+var map = null;
+
+function initMap() {
+	var pos = {lat: 36.3756481, lng: 127.3586239};
+	map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 17,
+		center: pos
+	});
+	map.addListener('click', function(e) {
+    placeMarkerAndPanTo(e.latLng);
+  });
+	if (navigator.geolocation) { // GPS를 지원하면
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var curr_position = {
+				lat: position.coords.latitude,
+				lng: position.coords.longitude
+			};
+			if (marker) {
+				marker.setMap(null);
+			}
+			marker = new google.maps.Marker({
+				position: curr_position,
+				map: map
+			});
+			map.setCenter(curr_position);
+		}, function(err) {
+		  console.log(err);
+		}, {
+		  enableHighAccuracy: false,
+		  maximumAge: 0,
+		  timeout: 5000
+		});
+	} else {
+		console.log('GPS를 지원하지 않습니다');
+	}
+}
+
+function placeMarkerAndPanTo(latLng) {
+	if (marker) {
+		marker.setMap(null);
+	}
+	marker = new google.maps.Marker({
+		position: latLng,
+		map: map
+	});
+	map.panTo(latLng);
+	$.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+latLng.toUrlValue()+'&key=AIzaSyAzRlXjFCtdnxrrJ5FQKVQGpwcUKp0csGc', function(result) {
+		if (result.status == 'OK' && result.results.length) {
+			console.log(result.results[0].formatted_address);
+		}
+	});
+}
+
 $(document).ready(function() {	
 	if (getParameterByName('id') == 1) {
 	

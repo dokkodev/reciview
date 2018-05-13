@@ -3,6 +3,7 @@ var add_zero = function(num) {
 };
 
 var make_date_string = function(date) {
+	date = new Date(date);
 	return date.getFullYear() + '/' + (add_zero(date.getMonth() + 1)) + '/' + add_zero(date.getDate()) + ' ' +
 		add_zero(date.getHours()) + ':' + add_zero(date.getMinutes()) + ':' + add_zero(date.getSeconds());
 };
@@ -11,40 +12,46 @@ var recipe = {
 	recipe_id: 'squidpasta',
 	ingredients: ['Tomato', 'Onion', 'Pasta Noodles', 'Garlic']
 };
-var review_list = [
+var review_list = {};
+var dummy_review_list = [
 	{
+		recipe_id: 'squidpasta',
 		recipe_version: 0,
 		star: 4,
 		user_profile: '<i class="fa fa-user-circle-o"></i>',
 		content: 'Very Gooooooood!\nTomato in soup was very delicious!!',
 		comment: ['Thank You Very Much!!'],
-		date: new Date('2018-05-03T16:32:17'),
+		date: new Date('2018-05-03T16:32:17').toISOString(),
 		unread: true
 	}, {
+		recipe_id: 'squidpasta',
 		recipe_version: 0,
 		star: 2,
 		user_profile: '<i class="fa fa-user-circle-o"></i>',
 		content: 'Umm.. I hate onion because of its smell not good, but it was not terrible I thought.',
-		date: new Date('2018-05-03T16:32:17'),
+		date: new Date('2018-05-03T16:32:17').toISOString(),
 		unread: true
 	}, {
+		recipe_id: 'squidpasta',
 		recipe_version: 0,
 		star: 5,
 		user_profile: '<i class="fa fa-user-circle-o"></i>',
 		content: 'I thought the quality of its pasta Noodles was excellent!',
-		date: new Date('2018-05-03T16:32:17'),
+		date: new Date('2018-05-03T16:32:17').toISOString(),
 		unread: false
 	}, {
+		recipe_id: 'squidpasta',
 		recipe_version: 0,
 		star: 4,
 		user_profile: '<i class="fa fa-user-circle-o"></i>',
 		content: 'I love garlic and onion inside this dish :)',
-		date: new Date('2018-05-03T16:32:17'),
+		date: new Date('2018-05-03T16:32:17').toISOString(),
 		unread: false
 	}
 ];
 
-var review_card_template = function(review) {
+var review_card_template = function(review_key) {
+	var review = review_list[review_key];
 	var stars = '';
 	for (var i = 0; i < 5; i++) {
 		if (i < review.star) {
@@ -63,7 +70,7 @@ var review_card_template = function(review) {
 		}
 	});
 	return [
-		'<div class="card review_card ' + ingredient_class + '">',
+		'<div class="card review_card ' + ingredient_class + '" data-key="' + review_key + '">',
 			'<div class="card-body row">',
 				'<div class="col col-1">',
 					'<div class="user_profile">',
@@ -92,8 +99,8 @@ var review_card_template = function(review) {
 						'</div>',
 						'<div class="review_comment_box">',
 							(review.comment && review.comment.length ? review.comment.map(function(comment) {
-								return '<i class="fa fa-reply"></i> ' + comment;
-							}).join('<br><br>') : ''),
+								return '<div class="review_comment_detail"><i class="fa fa-reply"></i> ' + comment + '<span class="delete_comment">delete</span></div>';
+							}).join('<br>') : ''),
 						'</div>',
 						'<div class="review_comment input-group">',
 							'<textarea class="form-control" placeholder="Please comment about this review" rows="1"></textarea>',
@@ -140,15 +147,30 @@ $(document).on('click', '.filtering', function() {
 $(document).on('click', '.save_comment', function() {
 	var $card = $(this).parents('.review_card');
 	var comment = $card.find('textarea').val();
-	var idx = $card.index();
-	if (review_list[idx].comment && review_list[idx].comment.length) {
-		review_list[idx].comment.push(comment);
+	var key = $card.data('key');
+	if (review_list[key].comment && review_list[key].comment.length) {
+		review_list[key].comment.push(comment);
 	} else {
-		review_list[idx].comment = [comment];
+		review_list[key].comment = [comment];
 	}
-	$('#review_list').empty();
-	review_list.map(function(review) {
-		$('#review_list').append(review_card_template(review));
+	database.ref('Reviews/'+key).update({comment: review_list[key].comment}).then(function() {
+		$('#review_list').empty();
+		Object.keys(review_list).map(function(key) {
+			$('#review_list').append(review_card_template(key));
+		});
+	});
+});
+
+$(document).on('click', '.delete_comment', function() {
+	var $card = $(this).parents('.review_card');
+	var key = $card.data('key');
+	var idx = $(this).parent().index() / 2;
+	review_list[key].comment.splice(idx, 1);
+	database.ref('Reviews/'+key).update({comment: review_list[key].comment}).then(function() {
+		$('#review_list').empty();
+		Object.keys(review_list).map(function(key) {
+			$('#review_list').append(review_card_template(key));
+		});
 	});
 });
 
@@ -160,10 +182,27 @@ $(document).on('keypress', '.review_comment textarea', function(evt) {
 });
 
 $(document).ready(function() {
-	$('.ingredient-list').append(recipe.ingredients.map(function(ingredient) {
-		return '<li class="ingredient">' + ingredient + '</li>';
-	}).join(''));
-	review_list.map(function(review) {
-		$('#review_list').append(review_card_template(review));
+	database.ref('Recipes/dummyRecipe').once('value').then(function(snapshot) {
+		if (snapshot && snapshot.val()) {
+			recipe = snapshot.val();
+			if (typeof recipe.ingredients == 'string') {
+				recipe.ingredients = eval(recipe.ingredients);
+			}
+		}
+		$('.ingredient-list').append(recipe.ingredients.map(function(ingredient) {
+			return '<li class="ingredient">' + ingredient + '</li>';
+		}).join(''));
+	});
+	database.ref('Reviews').once('value').then(function(snapshot) {
+		var reviews = snapshot.val();
+		Object.keys(reviews).map(function(key) {
+			if (reviews[key].recipe_id == recipe.recipe_id) {
+				review_list[key] = reviews[key];
+			}
+		});
+		$('#review_list').empty();
+		Object.keys(review_list).map(function(key) {
+			$('#review_list').append(review_card_template(key));
+		});
 	});
 });
