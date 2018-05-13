@@ -1,3 +1,5 @@
+var restaurant = null;
+
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -62,18 +64,28 @@ function placeMarkerAndPanTo(latLng) {
 	});
 }
 
-$(document).ready(function() {	
-	if (getParameterByName('id') == 1) {
-	
-		$('.breadcrumb-second a').html('Edit Restaurant');
-		$('#restaurant-form-name').val('Burger Queen');
-		$('#restaurant-form-address').val('Eueun-Dong, Daejeon');
-		$('#restaurant-form-type').val('Italian');
-		$('.image-upload').html('Change Image');
-		$('#restaurant-form-image').attr('src', 'https://cdn.pixabay.com/photo/2017/10/28/15/30/shops-2897328_1280.jpg');
+$(document).ready(function() {
+
+  let queryId = getParameterByName('id');
+
+	if (queryId != null) {
+    console.log(queryId);
+    database.ref('Restaurants/' + queryId).once('value').then(function(snapshot) {
+      restaurant = snapshot.val();
+      if (restaurant != null) {
+        console.log(restaurant);
+        $('.breadcrumb-second a').html('Edit Restaurant');
+        $('.image-upload').html('Change Image');
+
+        $('#restaurant-form-name').val(restaurant.name);
+        $('#restaurant-form-address').val(restaurant.address);
+        $('#restaurant-form-type').val(restaurant.type);
+        $('#restaurant-form-image').attr('src', restaurant.image);
+      }
+    })
 	}
-	
-	$( ".save-image" ).click(function() {		
+
+	$( ".save-image" ).click(function() {
 		$('#chooseImageModal').modal('hide');
 		var id = document.querySelector('input[name="restaurant-image"]:checked').value;
 		switch (id) {

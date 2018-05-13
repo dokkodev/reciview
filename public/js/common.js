@@ -12,3 +12,5 @@ var config = {
 
 firebase.initializeApp(config);
 var database = firebase.database();
+
+var restaurantsRef = database.ref('Restaurants');
