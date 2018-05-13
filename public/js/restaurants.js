@@ -1,5 +1,3 @@
-var restaurantsRef = database.ref('Restaurants');
-
 restaurantsRef.once('value').then(function(snapshot) {
 
 	restaurants = snapshot.val();
