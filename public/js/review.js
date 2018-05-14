@@ -163,7 +163,7 @@ $(document).on('click', '.save_comment', function() {
 	} else {
 		review_list[key].comment = [comment];
 	}
-	database.ref('Reviews/'+key).update({comment: review_list[key].comment}).then(function() {
+	database.ref('Reviews/'+key).update({comment: review_list[key].comment, unread: false}).then(function() {
 		$('#review_list').empty();
 		Object.keys(review_list).map(function(key) {
 			$('#review_list').append(review_card_template(key));
