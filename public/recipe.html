@@ -19,18 +19,18 @@
 						<a class="nav-link" href="/"><i class="fa fa-home"></i> Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" href="/mypage"><i class="fa fa-sticky-note"></i> MyPage</a>
+						<a class="nav-link active" href="/"><i class="fa fa-sticky-note"></i> MyPage</a>
 					</li>
 				</ul>
 			</div>
 			<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
 				<li class="nav-item">
-				  	<a class="nav-link btn-logout" href="/logout">
+				  	<a class="nav-link btn-logout" href="#">
 						<i class="fa fa-info-circle" aria-hidden="true"></i> Help
 					</a>
 				</li>
 				<li class="nav-item">
-				  	<a class="nav-link btn-logout" href="/logout">
+				  	<a class="nav-link btn-logout" href="#">
 						<i class="fa fa-user-o" aria-hidden="true"></i> Logout
 					</a>
 				</li>
@@ -39,7 +39,7 @@
 
 		<nav aria-label="breadcrumb">
 		  	<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">My Restaurants</a></li>
+					<li class="breadcrumb-item"><a href="/">My Restaurants</a></li>
 					<li class="breadcrumb-item active" aria-current="page">Recipes</li>
 		  	</ol>
 		</nav>
@@ -50,7 +50,9 @@
 					<div class="card recipe-card text-center">
 						<div class="card-body">
 							<h5 class="card-title">Add New Recipe</h5>
-							<a href="#" class="btn btn-primary newadd-button" data-toggle="modal" data-target=".add-restaurant"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+							<a href="/recipe_add" class="btn btn-primary newadd-button">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            </a>
 						</div>
 					</div>
 				</div>
@@ -61,6 +63,7 @@
 		<script src="module/js/jquery-ui.min.js"></script>
 		<script src="module/js/bootstrap.min.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-		<script src="js/recipe.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/recipe.js"></script>
 	</body>
 </html>

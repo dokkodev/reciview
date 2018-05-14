@@ -8,8 +8,18 @@ var make_date_string = function(date) {
 		add_zero(date.getHours()) + ':' + add_zero(date.getMinutes()) + ':' + add_zero(date.getSeconds());
 };
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 var recipe = {
-	recipe_id: 'squidpasta',
+	recipe_id: 'Squid Pasta',
 	ingredients: ['Tomato', 'Onion', 'Pasta Noodles', 'Garlic']
 };
 var review_list = {};
@@ -182,13 +192,15 @@ $(document).on('keypress', '.review_comment textarea', function(evt) {
 });
 
 $(document).ready(function() {
-	database.ref('Recipes/dummyRecipe').once('value').then(function(snapshot) {
+    var id = getParameterByName('id');
+	database.ref('Recipes/'+id).once('value').then(function(snapshot) {
 		if (snapshot && snapshot.val()) {
 			recipe = snapshot.val();
 			if (typeof recipe.ingredients == 'string') {
 				recipe.ingredients = eval(recipe.ingredients);
 			}
 		}
+        $('.breadcrumb-item.active').text(recipe.recipe_id);
 		$('.ingredient-list').append(recipe.ingredients.map(function(ingredient) {
 			return '<li class="ingredient">' + ingredient + '</li>';
 		}).join(''));

@@ -14,38 +14,12 @@ var marker = null;
 var map = null;
 
 function initMap() {
-	var pos = {lat: 36.3756481, lng: 127.3586239};
 	map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 17,
-		center: pos
+		zoom: 17
 	});
 	map.addListener('click', function(e) {
     placeMarkerAndPanTo(e.latLng);
   });
-	if (navigator.geolocation) { // GPS를 지원하면
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var curr_position = {
-				lat: position.coords.latitude,
-				lng: position.coords.longitude
-			};
-			if (marker) {
-				marker.setMap(null);
-			}
-			marker = new google.maps.Marker({
-				position: curr_position,
-				map: map
-			});
-			map.setCenter(curr_position);
-		}, function(err) {
-		  console.log(err);
-		}, {
-		  enableHighAccuracy: false,
-		  maximumAge: 0,
-		  timeout: 5000
-		});
-	} else {
-		console.log('GPS를 지원하지 않습니다');
-	}
 }
 
 function placeMarkerAndPanTo(latLng) {
@@ -74,16 +48,49 @@ $(document).ready(function() {
       restaurant = snapshot.val();
       if (restaurant != null) {
         console.log(restaurant);
-        $('.breadcrumb-second a').html('Edit Restaurant');
-        $('.image-upload').html('Change Image');
+        $('.breadcrumb-second').text('Edit Restaurant');
+        $('.image-upload').text('Change Image');
 
         $('#restaurant-form-name').val(restaurant.name);
         $('#restaurant-form-address').val(restaurant.address);
         $('#restaurant-form-type').val(restaurant.type);
         $('#restaurant-form-image').attr('src', restaurant.image);
+        eval('var position = ' + restaurant.position);
+        
+        if (marker) marker = null;
+        marker = new google.maps.Marker({
+            position: position,
+            map: map
+        });
+        map.setCenter(position);
       }
     })
-	}
+	} else {
+        if (navigator.geolocation) { // GPS를 지원하면
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var curr_position = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                if (marker) {
+                	marker.setMap(null);
+                }
+                marker = new google.maps.Marker({
+                	position: curr_position,
+                	map: map
+                });
+                map.setCenter(curr_position);
+            }, function(err) {
+              console.log(err);
+            }, {
+              enableHighAccuracy: false,
+              maximumAge: 0,
+              timeout: 5000
+            });
+        } else {
+            console.log('GPS를 지원하지 않습니다');
+        }
+    }
 
 	$( ".save-image" ).click(function() {
 		$('#chooseImageModal').modal('hide');

@@ -1,6 +1,6 @@
 .recipe-card{
 	margin-bottom: 15px;
-	height: 300px;
+	min-height: 366px;
 }
 
 .recipe-card .card-header{
@@ -13,6 +13,10 @@
 
 .recipe-card .card-body .card-title{
 	font-size: 22px;
+}
+
+.recipe-card .card-body .card-img {
+    height: 213px;
 }
 
 .edit-enter-wrapper{
@@ -36,7 +40,7 @@
 	padding: 60px;
 	width: 80%;
 	font-size: 30px;
-	margin-top: 20px;
+	margin-top: 60px;
 }
 
 .recipe_card{

@@ -16,7 +16,7 @@ nav .breadcrumb-item+.breadcrumb-item::before {
 }
 
 .restaurant-card {
-	height : 20vh;
+	min-height : 20vh;
 }
 
 .vertical-center {
