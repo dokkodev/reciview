@@ -12,6 +12,7 @@ function getParameterByName(name, url) {
 
 var marker = null;
 var map = null;
+var search_box = null;
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
@@ -57,7 +58,7 @@ $(document).ready(function() {
         $('#restaurant-form-image').attr('src', restaurant.image);
         eval('var position = ' + restaurant.position);
         
-        if (marker) marker = null;
+        if (marker) marker.setMap(null);
         marker = new google.maps.Marker({
             position: position,
             map: map
@@ -82,6 +83,16 @@ $(document).ready(function() {
                 map.setCenter(curr_position);
             }, function(err) {
               console.log(err);
+              var dummy_position = {
+                lat: 36.374295,
+                lng: 127.365771
+              };
+              if (marker) marker.setMap(null);
+              marker = new google.maps.Marker({
+                  position: dummy_position,
+                  map: map
+              });
+              map.setCenter(dummy_position);
             }, {
               enableHighAccuracy: false,
               maximumAge: 0,
