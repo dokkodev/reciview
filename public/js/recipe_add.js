@@ -38,6 +38,22 @@ $(document).ready(function(){
             
         }
     });
+    $(".save-image").click(function () {
+        $('#chooseImageModal').modal('hide');
+        var id = document.querySelector('input[name="restaurant-image"]:checked').value;
+        switch (id) {
+            case '1':
+                $('#restaurant-form-image').attr('src', 'imgs/shops-2897328_1280.jpg');
+                break;
+            case '2':
+                $('#restaurant-form-image').attr('src', 'imgs/red-wine-2443699_1280.jpg');
+                break;
+            case '3':
+                $('#restaurant-form-image').attr('src', 'imgs/mallorca-3275998_1280.jpg');
+                break;
+        }
+    });
+
 });
 
 $(".ingredient_div button").click(function(){
