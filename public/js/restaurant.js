@@ -97,13 +97,13 @@ $(document).ready(function() {
 		var id = document.querySelector('input[name="restaurant-image"]:checked').value;
 		switch (id) {
 			case '1':
-				$('#restaurant-form-image').attr('src', 'https://cdn.pixabay.com/photo/2017/10/28/15/30/shops-2897328_1280.jpg');
+				$('#restaurant-form-image').attr('src', 'imgs/shops-2897328_1280.jpg');
 				break;
 			case '2':
-				$('#restaurant-form-image').attr('src', 'https://cdn.pixabay.com/photo/2017/06/26/12/49/red-wine-2443699_1280.jpg');
+				$('#restaurant-form-image').attr('src', 'imgs/red-wine-2443699_1280.jpg');
 				break;
 			case '3':
-				$('#restaurant-form-image').attr('src', 'https://cdn.pixabay.com/photo/2018/03/30/17/58/mallorca-3275998_1280.jpg');
+				$('#restaurant-form-image').attr('src', 'imgs/mallorca-3275998_1280.jpg');
 				break;
 		}
 	});
