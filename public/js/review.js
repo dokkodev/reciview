@@ -5,7 +5,7 @@ var add_zero = function(num) {
 var make_date_string = function(date) {
 	date = new Date(date);
 	return date.getFullYear() + '/' + (add_zero(date.getMonth() + 1)) + '/' + add_zero(date.getDate()) + ' ' +
-		add_zero(date.getHours()) + ':' + add_zero(date.getMinutes()) + ':' + add_zero(date.getSeconds());
+		add_zero(date.getHours()) + ':' + add_zero(date.getMinutes());
 };
 
 function getParameterByName(name, url) {
@@ -158,18 +158,21 @@ $(document).on('click', '.filtering', function() {
 $(document).on('click', '.save_comment', function() {
 	var $card = $(this).parents('.review_card');
 	var comment = $card.find('textarea').val();
-	var key = $card.data('key');
-	if (review_list[key].comment && review_list[key].comment.length) {
-		review_list[key].comment.push(comment);
-	} else {
-		review_list[key].comment = [comment];
-	}
-	database.ref('Reviews/'+key).update({comment: review_list[key].comment, unread: false}).then(function() {
-		$('#review_list').empty();
-		Object.keys(review_list).map(function(key) {
-			$('#review_list').append(review_card_template(key));
+	if (comment && comment.length && comment.trim().length) {
+		var key = $card.data('key');
+		if (review_list[key].comment && review_list[key].comment.length) {
+			review_list[key].comment.push(comment);
+		} else {
+			review_list[key].comment = [comment];
+		}
+		review_list[key].unread = false;
+		database.ref('Reviews/'+key).update({comment: review_list[key].comment, unread: false}).then(function() {
+			$('#review_list').empty();
+			Object.keys(review_list).map(function(key) {
+				$('#review_list').append(review_card_template(key));
+			});
 		});
-	});
+	}
 });
 
 $(document).on('click', '.delete_comment', function() {
