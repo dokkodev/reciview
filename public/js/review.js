@@ -20,7 +20,8 @@ function getParameterByName(name, url) {
 
 var recipe = {
 	recipe_id: 'Squid Pasta',
-	ingredients: ['Tomato', 'Onion', 'Pasta Noodles', 'Garlic']
+	ingredients: ['Tomato', 'Onion', 'Pasta Noodles', 'Garlic'],
+	src: 'imgs/noodles-2733636_1280.jpg'
 };
 var review_list = {};
 var dummy_review_list = [
@@ -200,10 +201,11 @@ $(document).ready(function() {
 				recipe.ingredients = eval(recipe.ingredients);
 			}
 		}
-        $('.breadcrumb-item.active').text(recipe.recipe_id);
+    $('.breadcrumb-item.active').text(recipe.recipe_id);
 		$('.ingredient-list').append(recipe.ingredients.map(function(ingredient) {
 			return '<li class="ingredient">' + ingredient + '</li>';
 		}).join(''));
+		$('.card-img').attr('src', recipe.src);
 	});
 	database.ref('Reviews').once('value').then(function(snapshot) {
 		var reviews = snapshot.val();
