@@ -48,3 +48,8 @@
 .img_div .vertical-center{
     padding: 0;
 }
+
+#name_input{
+    width: 100%;
+    padding-right:15px;
+}
