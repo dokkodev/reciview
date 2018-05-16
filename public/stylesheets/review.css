@@ -2,7 +2,11 @@ div.container {
 	max-width: unset;
 }
 
-#sorting_list a {
+#sorting_list {
+	padding-bottom: 20px;
+	text-align: right;
+}
+a[tabindex="-1"] {
 	cursor: pointer;
 }
 
@@ -14,6 +18,9 @@ div.container {
 }
 .card .card-body .card-title {
 	margin-bottom: 30px;
+}
+.card .card-body .card-title i.fa {
+	font-size: small;
 }
 .card .button_container {
 	float: right;
@@ -34,6 +41,7 @@ div.container {
 	cursor: pointer;
 	margin-right: -1px;
 	margin-bottom: -1px;
+	border-bottom: 1px solid #ccc;
 }
 .card .ingredient-list-wrapper .ingredient:hover,
 .card .ingredient-list-wrapper .ingredient:active,
@@ -50,6 +58,14 @@ div.container {
 	margin-bottom: 9px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+}
+.card .description-title {
+	margin-top: 20px;
+}
+.card .description {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 10px;
 }
 
 .card.review_card {
