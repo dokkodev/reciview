@@ -48,7 +48,7 @@ $(document).ready(function(){
                 ingredients: JSON.stringify(ingredients), 
                 new_review: 0,
                 recipe_id: $('#name_input').val(),
-                src: $('#restaurant-form-image').src
+                src: $('#restaurant-form-image').attr('src')
             }).then(function() {
                 location.href = '/recipe';
             });
