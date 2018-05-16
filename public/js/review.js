@@ -17,7 +17,6 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-
 var recipe = {
 	recipe_id: 'Squid Pasta',
 	ingredients: ['Tomato', 'Onion', 'Pasta Noodles', 'Garlic'],
@@ -76,7 +75,7 @@ var review_card_template = function(review_key) {
 	recipe.ingredients.map(function(ingredient) {
 		var re = new RegExp(ingredient, 'gi');
 		if (re.test(review.content)) {
-			review.content = review.content.replace(re, '<span class="filtering">' + ingredient + '</span>');
+			review.content = review.content.replace(re, '<a class="filtering" tabindex="-1">' + ingredient + '</a>');
 			ingredient_class += ingredient + ' ';
 		}
 	});
@@ -94,11 +93,11 @@ var review_card_template = function(review_key) {
 							stars,
 						'</span>',
 						'<span class="float-right">',
-							'<div class="history_detail_wrapper text-right">',
-								'<a class="history_detail" href="/recipe_detail/',
-									recipe.recipe_id + '/' + review.recipe_version,
-								'">show this version of recipe</a>',
-							'</div>',
+							// '<div class="history_detail_wrapper text-right">',
+							// 	'<a class="history_detail" href="/recipe?id=',
+							// 		recipe.recipe_id + '/' + review.recipe_version,
+							// 	'">show this version of recipe</a>',
+							// '</div>',
 							'<div class="registered_date">',
 								'Registered Time : ', make_date_string(review.date),
 							'</div>',
@@ -196,7 +195,7 @@ $(document).on('keypress', '.review_comment textarea', function(evt) {
 });
 
 $(document).ready(function() {
-    var id = getParameterByName('id');
+	var id = getParameterByName('id');
 	database.ref('Recipes/'+id).once('value').then(function(snapshot) {
 		if (snapshot && snapshot.val()) {
 			recipe = snapshot.val();
@@ -221,5 +220,9 @@ $(document).ready(function() {
 		Object.keys(review_list).map(function(key) {
 			$('#review_list').append(review_card_template(key));
 		});
+	});
+
+	$('.recipe_edit').click(function() {
+		location.href = '/recipe_add?id=' + id;
 	});
 });
