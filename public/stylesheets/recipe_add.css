@@ -28,7 +28,7 @@
 }
 
 .submit{
-	margin-top:10pt;
+	margin-top:10px;
 }
 
 .buttons-row{
@@ -36,7 +36,12 @@
 }
 .buttons-row .btn{
 	float: right;
-	margin-top: 10pt;
-	margin-left: 10pt;
+	margin-top: 10px;
+    margin-left: 10px;
 	width: 7%;
+}
+
+.image_upload{
+    margin-top: 10px;
+    align-self: center;
 }
