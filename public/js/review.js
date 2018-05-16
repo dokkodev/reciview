@@ -8,6 +8,15 @@ var make_date_string = function(date) {
 		add_zero(date.getHours()) + ':' + add_zero(date.getMinutes());
 };
 
+var make_review_list = function(review_list, type, order) {
+	$('#review_list').empty();
+	Object.keys(review_list).sort(function(keyA, keyB) {
+		return review_list[keyA][type] < review_list[keyB][type] == order ? -1 : 1;
+	}).map(function(key) {
+		$('#review_list').append(review_card_template(key));
+	});
+};
+
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -17,6 +26,7 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
 var recipe = {
 	recipe_id: 'Squid Pasta',
 	ingredients: ['Tomato', 'Onion', 'Pasta Noodles', 'Garlic'],
@@ -166,10 +176,7 @@ $(document).on('click', '.save_comment', function() {
 		}
 		review_list[key].unread = false;
 		database.ref('Reviews/'+key).update({comment: review_list[key].comment, unread: false}).then(function() {
-			$('#review_list').empty();
-			Object.keys(review_list).map(function(key) {
-				$('#review_list').append(review_card_template(key));
-			});
+			make_review_list(review_list, 'date', false);
 		});
 	}
 });
@@ -180,10 +187,7 @@ $(document).on('click', '.delete_comment', function() {
 	var idx = $(this).parent().index() / 2;
 	review_list[key].comment.splice(idx, 1);
 	database.ref('Reviews/'+key).update({comment: review_list[key].comment}).then(function() {
-		$('#review_list').empty();
-		Object.keys(review_list).map(function(key) {
-			$('#review_list').append(review_card_template(key));
-		});
+		make_review_list(review_list, 'date', false);
 	});
 });
 
@@ -216,13 +220,24 @@ $(document).ready(function() {
 				review_list[key] = reviews[key];
 			}
 		});
-		$('#review_list').empty();
-		Object.keys(review_list).map(function(key) {
-			$('#review_list').append(review_card_template(key));
-		});
+		make_review_list(review_list, 'date', false);
 	});
 
 	$('.recipe_edit').click(function() {
 		location.href = '/recipe_add?id=' + id;
+	});
+
+	$('.sort_review').click(function() {
+		var type = $(this).data('type');
+		var order = $(this).hasClass('asc');
+		var $icon = $(this).find('i.fa');
+		make_review_list(review_list, type, order);
+		if (order) {
+			$(this).removeClass('asc').addClass('desc');
+			$icon.removeClass('fa-sort-asc').addClass('fa-sort-desc');
+		} else {
+			$(this).addClass('asc').removeClass('desc');
+			$icon.addClass('fa-sort-asc').removeClass('fa-sort-desc');
+		}
 	});
 });

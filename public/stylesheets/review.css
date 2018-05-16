@@ -2,6 +2,10 @@ div.container {
 	max-width: unset;
 }
 
+#sorting_list a {
+	cursor: pointer;
+}
+
 .card .card-header .card-title {
 	margin: .25rem 0;
 }
@@ -57,6 +61,7 @@ div.container {
 }
  .card.review_card .star-rating {
 	font-size: 24px;
+	color: #ffd54f;
 }
 .card.review_card .registered_date {
 	float: right;
