@@ -1,4 +1,5 @@
-var restaurant = null;
+var restaurant = {};
+var index = null;
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -41,6 +42,8 @@ function initMap() {
     }
 
     // Clear out the old markers.
+    if (marker) marker = null;
+
     markers.forEach(function(marker) {
       marker.setMap(null);
     });
@@ -95,6 +98,12 @@ function initMap() {
 }
 
 function placeMarkerAndPanTo(latLng) {
+
+  restaurant.position = JSON.stringify({
+    lat: latLng.lat(),
+    lng: latLng.lng()
+  });
+
 	if (marker) {
 		marker.setMap(null);
 	}
@@ -103,13 +112,35 @@ function placeMarkerAndPanTo(latLng) {
 		map: map
 	});
 	map.panTo(latLng);
-	$.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+latLng.toUrlValue()+'&key=AIzaSyAzRlXjFCtdnxrrJ5FQKVQGpwcUKp0csGc', function(result) {
+	$.get('https://maps.googleapis.com/maps/api/geocode/json?language=en&latlng='+latLng.toUrlValue()+'&key=AIzaSyAzRlXjFCtdnxrrJ5FQKVQGpwcUKp0csGc', function(result) {
 		if (result.status == 'OK' && result.results.length) {
-      address = result.results[0].formatted_address;
+      address =
+        result.results[0].address_components[1].long_name + ", " +
+        result.results[0].address_components[2].long_name + ", " +
+        result.results[0].address_components[3].long_name;
+      $('#restaurant-form-address').val(address);
       console.log(address);
 		}
 	});
   map.setZoom(17);
+}
+
+function saveRestaurant() {
+  restaurant.name = $('#restaurant-form-name').val();
+  restaurant.address = $('#restaurant-form-address').val();
+  restaurant.type = $('#restaurant-form-type').val();
+  restaurant.image = $('#restaurant-form-image').attr('src');
+  restaurant.date = "05/13/2018";
+
+  if (index) {
+    database.ref('Restaurants/' + index).set(restaurant).then(function() {
+      window.location.href = "/";
+    });
+  } else {
+    database.ref('Restaurants').push(restaurant).then(function() {
+      window.location.href = "/";
+    });
+  }
 }
 
 $(document).ready(function() {
@@ -118,6 +149,7 @@ $(document).ready(function() {
 
 	if (queryId != null) {
     console.log(queryId);
+    index = queryId;
     database.ref('Restaurants/' + queryId).once('value').then(function(snapshot) {
       restaurant = snapshot.val();
       if (restaurant != null) {
