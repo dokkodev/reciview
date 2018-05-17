@@ -30,7 +30,7 @@ var recipe_card_template = function(recipe, key){
 				'<div class="card-body">',
 					'<img class="card-img" src="',recipe.src,'">',
 					'<div class="row edit-enter-wrapper">',
-						'<button type="button" class="btn btn-outline-dark edit-button col">Edit</button>',
+						'<button type="button" class="btn btn-secondary edit-button col">Edit</button>',
 						'<button type="button" class="btn btn-primary enter-button col">Enter',
 							(recipe.new_review ? '<div class="notification">' + recipe.new_review + '</div>' : ''),
 						'</button>',

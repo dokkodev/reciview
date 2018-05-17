@@ -8,11 +8,32 @@ a {
 }
 
 header {
-	background-color: indigo;
+	background-color: #732c02;
+}
+
+nav{
+    background-color: #F29F05;
+}
+
+.breadcrumb{
+    background-color: #F29F05;
+}
+
+.breadcrumb a{
+    color: #591202;
+    text-decoration:underline;
+}
+.breadcrumb a.hover{
+    text-decoration:none;
+}
+
+.breadcrumb-item.active{
+    color: #fff;
 }
 
 nav .breadcrumb-item+.breadcrumb-item::before {
 	content: ">";
+    color: #fff;
 }
 
 .restaurant-card {
@@ -23,3 +44,18 @@ nav .breadcrumb-item+.breadcrumb-item::before {
 	padding: 10px 0;
 }
 
+body{
+    background-color: #F2E3B3;
+}
+
+.btn{
+    border:none;
+}
+
+.btn.btn-primary{
+    background-color: #D94D1A;
+}
+
+.card{
+    border: 1px #732c02 solid;
+}
