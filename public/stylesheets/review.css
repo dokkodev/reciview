@@ -6,6 +6,9 @@ div.container {
 	padding-bottom: 20px;
 	text-align: right;
 }
+#sorting_list a {
+	color: #591202;
+}
 a[tabindex="-1"] {
 	cursor: pointer;
 }
@@ -46,11 +49,14 @@ a.recipe_edit {
 	margin-bottom: -1px;
 	border-bottom: 1px solid #ccc;
 }
-#recipe_info.card .ingredient-list-wrapper .ingredient:hover,
+#recipe_info.card .ingredient-list-wrapper .ingredient:hover {
+	background-color: rgba(242, 159, 5, 0.6);
+}
 #recipe_info.card .ingredient-list-wrapper .ingredient:active,
 #recipe_info.card .ingredient-list-wrapper .ingredient.active {
 	opacity: 0.85;
-	background-color: #bbb;
+	background-color: rgba(242, 159, 5, 1);
+	color: rgba(0, 0, 0, 1);
 }
 #recipe_info.card .ingredient-list-wrapper .ingredient:first-child {
 	margin-top: 9px;
