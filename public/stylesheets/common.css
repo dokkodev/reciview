@@ -48,7 +48,7 @@ body{
     background-color: #F2E3B3;
 }
 
-.btn{
+.btn:not(.btn-outline-dark){
     border:none;
 }
 
