@@ -13,11 +13,82 @@ function getParameterByName(name, url) {
 var marker = null;
 var map = null;
 var search_box = null;
+var address = null;
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 17
 	});
+
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+
+      // Create a marker for each place.
+      let tmpMarker = new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      });
+      markers.push(tmpMarker);
+      google.maps.event.addListener(tmpMarker, "click", function(e) {
+        // Clear out the old markers.
+        markers.forEach(function(marker) {
+          marker.setMap(null);
+        });
+        markers = [];
+        placeMarkerAndPanTo(e.latLng);
+        console.log(place.name);
+      });
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+
 	map.addListener('click', function(e) {
     placeMarkerAndPanTo(e.latLng);
   });
@@ -34,9 +105,11 @@ function placeMarkerAndPanTo(latLng) {
 	map.panTo(latLng);
 	$.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+latLng.toUrlValue()+'&key=AIzaSyAzRlXjFCtdnxrrJ5FQKVQGpwcUKp0csGc', function(result) {
 		if (result.status == 'OK' && result.results.length) {
-			console.log(result.results[0].formatted_address);
+      address = result.results[0].formatted_address;
+      console.log(address);
 		}
 	});
+  map.setZoom(17);
 }
 
 $(document).ready(function() {
@@ -57,7 +130,7 @@ $(document).ready(function() {
         $('#restaurant-form-type').val(restaurant.type);
         $('#restaurant-form-image').attr('src', restaurant.image);
         eval('var position = ' + restaurant.position);
-        
+
         if (marker) marker.setMap(null);
         marker = new google.maps.Marker({
             position: position,
