@@ -9,33 +9,36 @@ div.container {
 a[tabindex="-1"] {
 	cursor: pointer;
 }
-
-.card .card-header .card-title {
-	margin: .25rem 0;
-}
-.card .card-img {
-	border-radius: 0;
-}
-.card .card-body .card-title {
-	margin-bottom: 30px;
-}
-.card .card-body .card-title i.fa {
-	font-size: small;
-}
-.card .button_container {
+a.recipe_edit {
+	margin-top: 0.25rem;
 	float: right;
 }
-.card .ingredient-list-wrapper {
+
+#recipe_info.card .card-header .card-title {
+	margin: .25rem 0;
+	font-size: 1.5rem;
+}
+#recipe_info.card .card-img {
+	border-radius: 0;
+}
+#recipe_info.card .card-body .card-title {
+	margin-bottom: 30px;
+}
+#recipe_info.card .card-body .card-title i.fa {
+	font-size: small;
+	cursor: pointer;
+}
+#recipe_info.card .ingredient-list-wrapper {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 }
-.card .ingredient-list-wrapper .ingredient-list {
+#recipe_info.card .ingredient-list-wrapper .ingredient-list {
 	margin: -10px 0;
 	padding: 0;
 	list-style-type: none;
 	list-style-position: inside;
 }
-.card .ingredient-list-wrapper .ingredient {
+#recipe_info.card .ingredient-list-wrapper .ingredient {
 	padding: 10px 15px;
 	font-size: 15px;
 	cursor: pointer;
@@ -43,26 +46,26 @@ a[tabindex="-1"] {
 	margin-bottom: -1px;
 	border-bottom: 1px solid #ccc;
 }
-.card .ingredient-list-wrapper .ingredient:hover,
-.card .ingredient-list-wrapper .ingredient:active,
-.card .ingredient-list-wrapper .ingredient.active {
+#recipe_info.card .ingredient-list-wrapper .ingredient:hover,
+#recipe_info.card .ingredient-list-wrapper .ingredient:active,
+#recipe_info.card .ingredient-list-wrapper .ingredient.active {
 	opacity: 0.85;
 	background-color: #bbb;
 }
-.card .ingredient-list-wrapper .ingredient:first-child {
+#recipe_info.card .ingredient-list-wrapper .ingredient:first-child {
 	margin-top: 9px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
-.card .ingredient-list-wrapper .ingredient:last-child {
+#recipe_info.card .ingredient-list-wrapper .ingredient:last-child {
 	margin-bottom: 9px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
-.card .description-title {
+#recipe_info.card .description-title {
 	margin-top: 20px;
 }
-.card .description {
+#recipe_info.card .description {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	padding: 10px;

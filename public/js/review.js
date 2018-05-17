@@ -212,6 +212,7 @@ $(document).ready(function() {
 			return '<li class="ingredient">' + ingredient + '</li>';
 		}).join(''));
 		$('.card-img').attr('src', recipe.src);
+		$('.description').text(recipe.description || '');
 	});
 	database.ref('Reviews').once('value').then(function(snapshot) {
 		var reviews = snapshot.val();
@@ -221,6 +222,10 @@ $(document).ready(function() {
 			}
 		});
 		make_review_list(review_list, 'date', false);
+	});
+
+	$('#recipe_info i.fa-question-circle').tooltip({
+		title: 'You can filter your reviews by each ingredients just by clicking ingredients below or in reviews.'
 	});
 
 	$('.recipe_edit').click(function() {
