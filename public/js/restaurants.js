@@ -10,6 +10,7 @@ restaurantsRef.once('value').then(function(snapshot) {
 		restaurantCard.find('.restaurant-reg-date').html(restaurant.date);
 		restaurantCard.find('.restaurant-address').html(restaurant.address);
 		restaurantCard.find('.restaurant-image').attr('src', restaurant.image);
+		restaurantCard.find('.restaurant-desc').html(restaurant.description);
 		restaurantCard.find('.edit-button').attr('href', 'restaurant?id=' + index);
 
 		restaurantCard.insertBefore($('.restaurant-card-new'));

@@ -12,6 +12,7 @@ function getParameterByName(name, url) {
 }
 
 var marker = null;
+var markers = [];
 var map = null;
 var search_box = null;
 var address = null;
@@ -31,7 +32,7 @@ function initMap() {
     searchBox.setBounds(map.getBounds());
   });
 
-  var markers = [];
+  markers = [];
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener('places_changed', function() {
@@ -99,6 +100,11 @@ function initMap() {
 
 function placeMarkerAndPanTo(latLng) {
 
+  markers.forEach(function(marker) {
+    marker.setMap(null);
+  });
+  markers = [];
+
   restaurant.position = JSON.stringify({
     lat: latLng.lat(),
     lng: latLng.lng()
@@ -130,7 +136,14 @@ function saveRestaurant() {
   restaurant.address = $('#restaurant-form-address').val();
   restaurant.type = $('#restaurant-form-type').val();
   restaurant.image = $('#restaurant-form-image').attr('src');
+  restaurant.description = $('#restaurant-form-description').val();
   restaurant.date = "05/13/2018";
+
+  if (!restaurant.name || !restaurant.address || !restaurant.type
+    || !restaurant.image || !restaurant.description) {
+      alert("Please fill in all information!");
+      return;
+  }
 
   if (index) {
     database.ref('Restaurants/' + index).set(restaurant).then(function() {
@@ -161,6 +174,7 @@ $(document).ready(function() {
         $('#restaurant-form-address').val(restaurant.address);
         $('#restaurant-form-type').val(restaurant.type);
         $('#restaurant-form-image').attr('src', restaurant.image);
+        $('#restaurant-form-description').val(restaurant.description);
         eval('var position = ' + restaurant.position);
 
         if (marker) marker.setMap(null);
