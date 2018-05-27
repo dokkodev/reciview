@@ -109,7 +109,7 @@ var review_card_template = function(review_key) {
 							// 	'">show this version of recipe</a>',
 							// '</div>',
 							'<div class="registered_date">',
-								'Registered Time : ', make_date_string(review.date),
+								'등록 날짜 : ', make_date_string(review.date),
 							'</div>',
 						'</span>',
 					'</div>',
@@ -119,13 +119,13 @@ var review_card_template = function(review_key) {
 						'</div>',
 						'<div class="review_comment_box">',
 							(review.comment && review.comment.length ? review.comment.map(function(comment) {
-								return '<div class="review_comment_detail"><i class="fa fa-reply"></i> ' + comment + '<span class="delete_comment">delete</span></div>';
+								return '<div class="review_comment_detail"><i class="fa fa-reply"></i> ' + comment + '<span class="delete_comment">삭제</span></div>';
 							}).join('<br>') : ''),
 						'</div>',
 						'<div class="review_comment input-group">',
 							'<textarea class="form-control" placeholder="Please comment about this review" rows="1"></textarea>',
 							'<div class="input-group-append">',
-								'<button class="btn btn-outline-dark save_comment">Enter</button>',
+								'<button class="btn btn-outline-dark save_comment">입력</button>',
 							'</div>',
 						'</div>',
 					'</div>',
@@ -225,7 +225,8 @@ $(document).ready(function() {
 	});
 
 	$('#recipe_info i.fa-question-circle').tooltip({
-		title: 'You can filter your reviews by each ingredients just by clicking ingredients below or in reviews.'
+		title: '아래 각 재료들을 클릭하면 해당 재료가 포함된 댓글만 볼 수 있습니다.'
+		// title: 'You can filter your reviews by each ingredients just by clicking ingredients below or in reviews.'
 	});
 
 	$('.recipe_edit').click(function() {
